@@ -10,6 +10,8 @@ import pe.edu.cibertec.app_security_baca_diaz.model.Proyecto;
 import pe.edu.cibertec.app_security_baca_diaz.repository.ProyectoRepository;
 import pe.edu.cibertec.app_security_baca_diaz.service.IProyectoService;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class ProyectoService implements IProyectoService {
@@ -28,6 +30,24 @@ public class ProyectoService implements IProyectoService {
                 .descripcion(proyecto.getDescripcion())
                 .titulo(proyecto.getTitulo())
                 .estado("Activo")
+                .build(),
+                HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<ProyectoResponseDto> finalizarProyecto(Integer idProyecto) {
+        Proyecto proyecto = null;
+        Optional<Proyecto> optional = proyectoRepository.findById(idProyecto);
+        if(optional.isPresent())
+            proyecto = optional.get();
+
+        proyecto.setActivo(false);
+        proyecto = proyectoRepository.save(proyecto);
+        return new ResponseEntity<>(ProyectoResponseDto.builder()
+                .id(proyecto.getId())
+                .descripcion(proyecto.getDescripcion())
+                .titulo(proyecto.getTitulo())
+                .estado("Finalizado")
                 .build(),
                 HttpStatus.OK);
     }
