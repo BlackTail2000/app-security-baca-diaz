@@ -10,16 +10,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class JWTAuthFilter extends OncePerRequestFilter {
-
-    @Value("${custom.clave}")
-    private String clave;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -52,6 +51,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     private Claims validarToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization")
                 .replace("Bearer ", "");
+        String clave = "Baca_Diaz_T2";
         return Jwts.parser().setSigningKey(clave.getBytes()).parseClaimsJws(token).getBody();
     }
 
