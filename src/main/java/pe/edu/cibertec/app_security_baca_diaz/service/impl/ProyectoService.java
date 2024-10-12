@@ -10,6 +10,7 @@ import pe.edu.cibertec.app_security_baca_diaz.model.Proyecto;
 import pe.edu.cibertec.app_security_baca_diaz.repository.ProyectoRepository;
 import pe.edu.cibertec.app_security_baca_diaz.service.IProyectoService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,5 +51,10 @@ public class ProyectoService implements IProyectoService {
                 .estado("Finalizado")
                 .build(),
                 HttpStatus.OK);
+    }
+
+    @Override
+    public List<Proyecto> obtenerTodosLosProyectos(){
+        return proyectoRepository.findAll();
     }
 }

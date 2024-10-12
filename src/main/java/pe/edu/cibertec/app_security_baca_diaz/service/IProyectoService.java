@@ -5,8 +5,11 @@ import pe.edu.cibertec.app_security_baca_diaz.dto.request.ProyectoRequestDto;
 import pe.edu.cibertec.app_security_baca_diaz.dto.response.ProyectoResponseDto;
 import pe.edu.cibertec.app_security_baca_diaz.model.Proyecto;
 
+import java.util.List;
+
 public interface IProyectoService {
 
     ResponseEntity<ProyectoResponseDto> crearProyecto(ProyectoRequestDto proyectoRequestDto);
     ResponseEntity<ProyectoResponseDto> finalizarProyecto(Integer idProyecto);
+    List<Proyecto> obtenerTodosLosProyectos();
 }
