@@ -6,7 +6,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.app_security_baca_diaz.dto.request.ProyectoRequestDto;
 import pe.edu.cibertec.app_security_baca_diaz.dto.response.ProyectoResponseDto;
+import pe.edu.cibertec.app_security_baca_diaz.model.Proyecto;
 import pe.edu.cibertec.app_security_baca_diaz.service.IProyectoService;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,4 +28,12 @@ public class ProyectoController {
     public ResponseEntity<ProyectoResponseDto> finalizarProyecto(@PathVariable("id") Integer idProyecto) {
         return proyectoService.finalizarProyecto(idProyecto);
     }
+
+    @GetMapping
+    @PreAuthorize("hasRole('COORDINADOR')")
+    public List<Proyecto> obtenerlosTodos(){
+        return proyectoService.obtenerTodosLosProyectos();
+    }
+
+
 }
