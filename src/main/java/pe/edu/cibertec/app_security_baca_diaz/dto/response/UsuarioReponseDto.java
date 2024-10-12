@@ -1,4 +1,4 @@
-package pe.edu.cibertec.app_security_baca_diaz.dto;
+package pe.edu.cibertec.app_security_baca_diaz.dto.response;
 
 import lombok.Builder;
 import lombok.Data;

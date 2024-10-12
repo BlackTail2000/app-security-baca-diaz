@@ -11,8 +11,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.cibertec.app_security_baca_diaz.dto.UsuarioReponseDto;
-import pe.edu.cibertec.app_security_baca_diaz.dto.UsuarioRequestDto;
+import pe.edu.cibertec.app_security_baca_diaz.dto.response.UsuarioReponseDto;
+import pe.edu.cibertec.app_security_baca_diaz.dto.request.UsuarioRequestDto;
 import pe.edu.cibertec.app_security_baca_diaz.model.Usuario;
 import pe.edu.cibertec.app_security_baca_diaz.service.IUsuarioService;
 import pe.edu.cibertec.app_security_baca_diaz.service.impl.DetalleUsuarioService;
@@ -28,8 +28,7 @@ public class AuthController {
     private final DetalleUsuarioService detalleUsuarioService;
     private final AuthenticationManager authenticationManager;
     private final IUsuarioService usuarioService;
-    @Value("${custom.clave}")
-    private String clave;
+    private final String clave = "Baca_Diaz_T2";
 
     @PostMapping("/login")
     public ResponseEntity<UsuarioReponseDto> userAuthentication(
